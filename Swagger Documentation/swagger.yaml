@@ -1,0 +1,73 @@
+---
+swagger: "2.0"
+info:
+  description: This is a basic File Operations API which can perfrom operations like download, delete and copy file in a server
+  version: 1.0.0
+  title: File Operations API
+  contact:
+    email: parag.patidar@infrrdifselected.com
+host: localhost:8081
+schemes:
+- http
+paths:
+  /file/download/{fileName}:
+    get:
+      summary: download the given file
+      description: |
+        By passing in the appropriate fileName, you can downlaod
+        available file on server
+      operationId: fileDownload
+      parameters:
+      - name: fileName
+        in: path
+        description: pass the file name with extenstion to be downloaded from server directory
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Files starts downloading
+        "400":
+          description: File does not exists
+        "500":
+          description: Internal Server Error
+  /file/delete/{fileName}:
+    delete:
+      summary: download the given file
+      description: |
+        By passing in the appropriate fileName, you can delete
+        available file on server
+      operationId: fileDelete
+      parameters:
+      - name: fileName
+        in: path
+        description: pass the file name with extenstion to be deleted from server directory
+        required: true
+        type: string
+      responses:
+        "204":
+          description: File Deleted Sucessfully
+        "400":
+          description: File does not exists
+        "500":
+          description: Internal Server Error
+  /file/create/{fileName}:
+    get:
+      summary: copy the given file
+      description: |
+        By passing in the appropriate fileName, you can copy
+        available file on server
+      operationId: fileCopy
+      parameters:
+      - name: fileName
+        in: path
+        description: pass the file name with extenstion to be copied from server directory
+        required: true
+        type: string
+      responses:
+        "200":
+          description: File Created Sucessfully
+        "400":
+          description: File does not exists
+        "500":
+          description: Internal Server Error
+definitions: {}

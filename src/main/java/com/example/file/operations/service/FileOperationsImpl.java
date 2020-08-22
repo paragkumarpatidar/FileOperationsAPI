@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
@@ -29,14 +30,15 @@ import com.example.file.operations.exception.FileOperationsException;
 @Service
 public class FileOperationsImpl implements FileOperations {
 
-	private static final String BASE_PATH = "C:/Files/";
+	@Value("${file.baseLocation:C:\"Files\"}")
+	private String baseLocation;
 
 	private static final Logger LOG = LoggerFactory.getLogger(FileOperationsImpl.class);
 
 	@Override
 	public void fileDownload(HttpServletResponse response, String fileName) {
 
-		File file = new File(BASE_PATH + fileName);
+		File file = new File(baseLocation + fileName);
 		InputStream inputStream;
 		if (file.exists()) {
 			try {
@@ -54,7 +56,7 @@ public class FileOperationsImpl implements FileOperations {
 	@Override
 	public void fileDelete(String fileName) {
 
-		File file = new File(BASE_PATH + fileName);
+		File file = new File(baseLocation + fileName);
 		if (file.exists()) {
 			try {
 				if (file.delete()) {
@@ -76,8 +78,8 @@ public class FileOperationsImpl implements FileOperations {
 
 		FileInputStream inputStream;
 		FileOutputStream outputStream;
-		File fileToCopy = new File(BASE_PATH + fileName);
-		File newFile = new File(BASE_PATH + FileConstants.COPY + fileToCopy.getName());
+		File fileToCopy = new File(baseLocation + fileName);
+		File newFile = new File(baseLocation + FileConstants.COPY + fileToCopy.getName());
 		try {
 			inputStream = new FileInputStream(fileToCopy);
 			FileChannel inChannel = inputStream.getChannel();

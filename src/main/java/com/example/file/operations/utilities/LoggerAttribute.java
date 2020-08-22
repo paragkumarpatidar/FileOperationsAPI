@@ -6,6 +6,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
+/**
+ * Logger Attribute which defines the Logging structure
+ * 
+ * @author Parag Patidar
+ *
+ */
 @Component
 @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LoggerAttribute {

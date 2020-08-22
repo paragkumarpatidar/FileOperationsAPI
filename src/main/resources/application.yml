@@ -3,3 +3,5 @@ spring:
     name: fileOperations
 server:
   port: 8081
+file:
+  baseLocation: C:\Files\

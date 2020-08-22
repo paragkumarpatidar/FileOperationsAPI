@@ -5,7 +5,12 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
+/***
+ * Basic Error Info Domain class
+ * 
+ * @author Parag Patidar
+ *
+ */
 @JsonInclude(Include.NON_NULL)
 public class ErrorInfo implements Serializable {
 
